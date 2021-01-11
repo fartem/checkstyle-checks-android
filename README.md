@@ -9,7 +9,7 @@ Custom Checkstyle checks for Android projects.
 ## Checks
 
 | Check | Description |
-| --- | --- | --- |
+| --- | --- |
 | `AndroidViewFieldNameCheck` | Check Android view field name (example: for `TextView` variable's name must be starts with `tv`) |
 | `ContextFirstParameterCheck` | Check Context as first parameter in a class constructor or in an arguments list |
 | `MethodObjectReturnAnnotationCheck` | Check annotation for a method with return values (by default it is `@NonNull` and `@Nullable`) |
