@@ -28,6 +28,7 @@ public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
         final DetailAST returnType = ast.findFirstToken(TokenTypes.TYPE);
         if (!EXCLUDED_TYPES.contains(returnType.getFirstChild().getType())) {
             // TODO: add annotations check
+            @SuppressWarnings("CPD-START")
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (modifiers.getChildCount(TokenTypes.ANNOTATION) == 0) {
                 log(ast.getLineNo(), MESSAGE_KEY);
