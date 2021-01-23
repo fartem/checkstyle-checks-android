@@ -24,8 +24,28 @@ public class AndroidViewFieldNameCheck extends AbstractCheck {
                         log(ast);
                     }
                     break;
+                case "ImageButton":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("ib")) {
+                        log(ast);
+                    }
+                    break;
                 case "EditText":
                     if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("et")) {
+                        log(ast);
+                    }
+                    break;
+                case "Button":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("btn")) {
+                        log(ast);
+                    }
+                    break;
+                case "RecyclerView":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("rv")) {
+                        log(ast);
+                    }
+                    break;
+                case "AdaptiveRecyclerView":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("arv")) {
                         log(ast);
                     }
                     break;
