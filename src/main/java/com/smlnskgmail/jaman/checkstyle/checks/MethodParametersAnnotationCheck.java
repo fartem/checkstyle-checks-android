@@ -8,6 +8,7 @@ import com.puppycrawl.tools.checkstyle.utils.TokenUtil;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("CPD-START")
 public class MethodParametersAnnotationCheck extends AbstractCheck {
 
     private static final List<String> REQUIRED_ANNOTATIONS = Arrays.asList(

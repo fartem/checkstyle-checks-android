@@ -7,6 +7,7 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("CPD-START")
 public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
 
     private static final List<String> REQUIRED_ANNOTATIONS = Arrays.asList(
@@ -36,7 +37,8 @@ public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
             if (modifiers.getChildCount(TokenTypes.ANNOTATION) == 0) {
                 log(ast.getLineNo(), MESSAGE_KEY);
             } else {
-                if (!REQUIRED_ANNOTATIONS.contains(modifiers.getFirstChild().findFirstToken(TokenTypes.IDENT).getText())) {
+                String firstAnnotationName = modifiers.getFirstChild().findFirstToken(TokenTypes.IDENT).getText();
+                if (!REQUIRED_ANNOTATIONS.contains(firstAnnotationName)) {
                     log(ast.getLineNo(), MESSAGE_KEY);
                 }
             }

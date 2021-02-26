@@ -33,6 +33,10 @@ cpd {
     language = 'java'
 }
 
+cpdCheck {
+    exclude '*.java'
+}
+
 repositories {
     mavenCentral()
 }
