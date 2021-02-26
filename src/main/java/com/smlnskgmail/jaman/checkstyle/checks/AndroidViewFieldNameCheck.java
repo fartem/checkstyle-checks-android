@@ -49,6 +49,11 @@ public class AndroidViewFieldNameCheck extends AbstractCheck {
                         log(ast);
                     }
                     break;
+                case "FloatingActionButton":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("fab")) {
+                        log(ast);
+                    }
+                    break;
             }
         }
     }

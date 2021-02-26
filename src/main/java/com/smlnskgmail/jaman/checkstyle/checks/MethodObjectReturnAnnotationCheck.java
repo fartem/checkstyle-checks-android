@@ -9,6 +9,11 @@ import java.util.List;
 
 public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
 
+    private static final List<String> REQUIRED_ANNOTATIONS = Arrays.asList(
+            "NonNull",
+            "Nullable"
+    );
+
     private static final String MESSAGE_KEY = "MethodObjectReturnAnnotationCheck";
 
     private static final List<Integer> EXCLUDED_TYPES = Arrays.asList(
@@ -27,10 +32,13 @@ public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST returnType = ast.findFirstToken(TokenTypes.TYPE);
         if (!EXCLUDED_TYPES.contains(returnType.getFirstChild().getType())) {
-            // TODO: add annotations check
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (modifiers.getChildCount(TokenTypes.ANNOTATION) == 0) {
                 log(ast.getLineNo(), MESSAGE_KEY);
+            } else {
+                if (!REQUIRED_ANNOTATIONS.contains(modifiers.getFirstChild().findFirstToken(TokenTypes.IDENT).getText())) {
+                    log(ast.getLineNo(), MESSAGE_KEY);
+                }
             }
         }
     }

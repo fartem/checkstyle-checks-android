@@ -10,6 +10,11 @@ import java.util.List;
 
 public class MethodParametersAnnotationCheck extends AbstractCheck {
 
+    private static final List<String> REQUIRED_ANNOTATIONS = Arrays.asList(
+            "NonNull",
+            "Nullable"
+    );
+
     private static final List<Integer> EXCLUDED_TYPES = Arrays.asList(
             TokenTypes.LITERAL_BOOLEAN,
             TokenTypes.LITERAL_CHAR,
@@ -42,11 +47,13 @@ public class MethodParametersAnnotationCheck extends AbstractCheck {
     }
 
     private boolean isInvalidParameter(DetailAST parameterAST) {
+        if (EXCLUDED_TYPES.contains(parameterAST.findFirstToken(TokenTypes.TYPE).getFirstChild().getType())) {
+            return false;
+        }
         final DetailAST modifiers = parameterAST.findFirstToken(TokenTypes.MODIFIERS);
-        // TODO: add annotations check
-        return modifiers != null
-                && !EXCLUDED_TYPES.contains(parameterAST.findFirstToken(TokenTypes.TYPE).getFirstChild().getType())
-                && modifiers.findFirstToken(TokenTypes.ANNOTATION) == null;
+        DetailAST firstAnnotation = modifiers.findFirstToken(TokenTypes.ANNOTATION);
+        return firstAnnotation == null
+                || !REQUIRED_ANNOTATIONS.contains(firstAnnotation.findFirstToken(TokenTypes.IDENT).getText());
     }
 
     @Override
