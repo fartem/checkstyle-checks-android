@@ -7,7 +7,13 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 import java.util.Arrays;
 import java.util.List;
 
+@SuppressWarnings("CPD-START")
 public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
+
+    private static final List<String> REQUIRED_ANNOTATIONS = Arrays.asList(
+            "NonNull",
+            "Nullable"
+    );
 
     private static final String MESSAGE_KEY = "MethodObjectReturnAnnotationCheck";
 
@@ -27,11 +33,14 @@ public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
     public void visitToken(DetailAST ast) {
         final DetailAST returnType = ast.findFirstToken(TokenTypes.TYPE);
         if (!EXCLUDED_TYPES.contains(returnType.getFirstChild().getType())) {
-            // TODO: add annotations check
-            @SuppressWarnings("CPD-START")
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (modifiers.getChildCount(TokenTypes.ANNOTATION) == 0) {
                 log(ast.getLineNo(), MESSAGE_KEY);
+            } else {
+                String firstAnnotationName = modifiers.getFirstChild().findFirstToken(TokenTypes.IDENT).getText();
+                if (!REQUIRED_ANNOTATIONS.contains(firstAnnotationName)) {
+                    log(ast.getLineNo(), MESSAGE_KEY);
+                }
             }
         }
     }
