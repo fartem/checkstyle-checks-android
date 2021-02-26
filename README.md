@@ -8,16 +8,24 @@ Custom Checkstyle checks for Android projects.
 
 ## Checks
 
-| Check | Description | Level |
-| --- | --- | --- |
-| `AndroidViewFieldNameCheck` | Check Android view field name (example: for `TextView` variable's name must be starts with `tv`) | `Error` |
-| `ContextFirstParameterCheck` | Check Context as first parameter in a class constructor or in an arguments list | `Error` |
-| `MethodObjectReturnAnnotationCheck` | Check annotation for a method with return values (by default it is `@NonNull` and `@Nullable`) | `Error` |
-| `MethodParametersAnnotationCheck` | Check annotation for an argument in a class constructor or a method (by default it is `@NonNull` and `@Nullable`) | `Error` |
+| Check | Description |
+| --- | --- |
+| `AndroidViewFieldNameCheck` | Check Android view field name (example: for `TextView` variable's name must be starts with `tv`) |
+| `ContextFirstParameterCheck` | Check Context as first parameter in a class constructor or in an arguments list |
+| `MethodObjectReturnAnnotationCheck` | Check annotation for a method with return values (by default it is `@NonNull` and `@Nullable`) |
+| `MethodParametersAnnotationCheck` | Check annotation for an argument in a class constructor or a method (by default it is `@NonNull` and `@Nullable`) |
 
 ## Installation
 
 ### Gradle
+
+Add `https://jitpack.io` as Maven repository to `build.gradle` (needs for downloading dependencies from GitHub):
+
+```groovy
+repositories {
+    maven { url "https://jitpack.io" }
+}
+```
 
 If you are using [Checkstyle plugin](https://docs.gradle.org/current/userguide/checkstyle_plugin.html) for Gradle, add
 checks project as dependency in the `dependencies` section in the `build.gradle`:
@@ -32,16 +40,16 @@ Add to `TreeWalker` module:
 
 ```xml
 <module name="com.smlnskgmail.jaman.checkstyle.checks.AndroidViewFieldNameCheck">
-    <property name="id" value="AndroidViewFieldNameCheck"/>
+    <property name="id" value="AndroidViewFieldNameCheck" />
 </module>
 <module name="com.smlnskgmail.jaman.checkstyle.checks.ContextFirstParameterCheck">
-    <property name="id" value="ContextFirstParameterCheck"/>
+    <property name="id" value="ContextFirstParameterCheck" />
 </module>
 <module name="com.smlnskgmail.jaman.checkstyle.checks.MethodObjectReturnAnnotationCheck">
-    <property name="id" value="MethodObjectReturnAnnotationCheck"/>
+    <property name="id" value="MethodObjectReturnAnnotationCheck" />
 </module>
 <module name="com.smlnskgmail.jaman.checkstyle.checks.MethodParametersAnnotationCheck">
-    <property name="id" value="MethodParametersAnnotationCheck"/>
+    <property name="id" value="MethodParametersAnnotationCheck" />
 </module>
 ```
 
