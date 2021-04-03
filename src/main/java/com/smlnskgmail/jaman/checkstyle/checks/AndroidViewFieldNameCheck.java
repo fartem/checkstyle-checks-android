@@ -14,6 +14,36 @@ public class AndroidViewFieldNameCheck extends AbstractCheck {
         if (identifier != null) {
             String fieldClassName = identifier.getText();
             switch (fieldClassName) {
+                case "LinearLayout":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("lv")) {
+                        log(ast);
+                    }
+                    break;
+                case "RelativeLayout":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("rl")) {
+                        log(ast);
+                    }
+                    break;
+                case "ConstraintLayout":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("cl")) {
+                        log(ast);
+                    }
+                    break;
+                case "FrameLayout":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("fl")) {
+                        log(ast);
+                    }
+                    break;
+                case "ScrollView":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("sv")) {
+                        log(ast);
+                    }
+                    break;
+                case "HorizontalScrollView":
+                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("hsv")) {
+                        log(ast);
+                    }
+                    break;
                 case "TextView":
                     if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("tv")) {
                         log(ast);

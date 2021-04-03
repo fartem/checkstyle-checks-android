@@ -4,9 +4,9 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
-public class ContextFirstParameterCheck extends AbstractCheck {
+public class ContextAsFirstParameterCheck extends AbstractCheck {
 
-    private static final String MESSAGE_KEY = "ContextFirstParameterCheck";
+    private static final String MESSAGE_KEY = "ContextAsFirstParameterCheck";
 
     @Override
     public void visitToken(DetailAST ast) {
