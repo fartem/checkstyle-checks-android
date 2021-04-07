@@ -13,74 +13,75 @@ public class AndroidViewFieldNameCheck extends AbstractCheck {
         DetailAST identifier = ast.findFirstToken(TokenTypes.TYPE).findFirstToken(TokenTypes.IDENT);
         if (identifier != null) {
             String fieldClassName = identifier.getText();
+            String ident = ast.findFirstToken(TokenTypes.IDENT).getText();
             switch (fieldClassName) {
                 case "LinearLayout":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("lv")) {
+                    if (!ident.startsWith("lv")) {
                         log(ast);
                     }
                     break;
                 case "RelativeLayout":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("rl")) {
+                    if (!ident.startsWith("rl")) {
                         log(ast);
                     }
                     break;
                 case "ConstraintLayout":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("cl")) {
+                    if (!ident.startsWith("cl")) {
                         log(ast);
                     }
                     break;
                 case "FrameLayout":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("fl")) {
+                    if (!ident.startsWith("fl")) {
                         log(ast);
                     }
                     break;
                 case "ScrollView":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("sv")) {
+                    if (!ident.startsWith("sv")) {
                         log(ast);
                     }
                     break;
                 case "HorizontalScrollView":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("hsv")) {
+                    if (!ident.startsWith("hsv")) {
                         log(ast);
                     }
                     break;
                 case "TextView":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("tv")) {
+                    if (!ident.startsWith("tv")) {
                         log(ast);
                     }
                     break;
                 case "ImageView":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("iv")) {
+                    if (!ident.startsWith("iv")) {
                         log(ast);
                     }
                     break;
                 case "ImageButton":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("ib")) {
+                    if (!ident.startsWith("ib")) {
                         log(ast);
                     }
                     break;
                 case "EditText":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("et")) {
+                    if (!ident.startsWith("et")) {
                         log(ast);
                     }
                     break;
                 case "Button":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("btn")) {
+                    if (!ident.startsWith("btn")) {
                         log(ast);
                     }
                     break;
                 case "RecyclerView":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("rv")) {
+                    if (!ident.startsWith("rv")) {
                         log(ast);
                     }
                     break;
                 case "AdaptiveRecyclerView":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("arv")) {
+                    if (!ident.startsWith("arv")) {
                         log(ast);
                     }
                     break;
                 case "FloatingActionButton":
-                    if (!ast.findFirstToken(TokenTypes.IDENT).getText().startsWith("fab")) {
+                    if (!ident.startsWith("fab")) {
                         log(ast);
                     }
                     break;
