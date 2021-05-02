@@ -4,87 +4,108 @@ import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
 import com.puppycrawl.tools.checkstyle.api.DetailAST;
 import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AndroidViewFieldNameCheck extends AbstractCheck {
 
     private static final String MESSAGE_KEY = "AndroidViewFieldNameCheck";
+
+    private static final Map<String, String> VIEW_NAMES = new HashMap<>();
+
+    public AndroidViewFieldNameCheck() {
+        VIEW_NAMES.put(
+                "LinearLayout",
+                "ll"
+        );
+        VIEW_NAMES.put(
+                "RelativeLayout",
+                "rl"
+        );
+        VIEW_NAMES.put(
+                "ConstrainsLayout",
+                "cl"
+        );
+        VIEW_NAMES.put(
+                "FrameLayout",
+                "fl"
+        );
+        VIEW_NAMES.put(
+                "ScrollView",
+                "sv"
+        );
+        VIEW_NAMES.put(
+                "HorizontalScrollView",
+                "hsv"
+        );
+        VIEW_NAMES.put(
+                "TextView",
+                "tv"
+        );
+        VIEW_NAMES.put(
+                "ImageView",
+                "iv"
+        );
+        VIEW_NAMES.put(
+                "ImageButton",
+                "ib"
+        );
+        VIEW_NAMES.put(
+                "EditText",
+                "et"
+        );
+        VIEW_NAMES.put(
+                "Button",
+                "btn"
+        );
+        VIEW_NAMES.put(
+                "RecyclerView",
+                "rv"
+        );
+        VIEW_NAMES.put(
+                "AdaptiveRecyclerView",
+                "arv"
+        );
+        VIEW_NAMES.put(
+                "FloatingActionButton",
+                "fab"
+        );
+        VIEW_NAMES.put(
+                "ViewGroup",
+                "vg"
+        );
+        VIEW_NAMES.put(
+                "ViewPager",
+                "vp"
+        );
+        VIEW_NAMES.put(
+                "CheckBox",
+                "cb"
+        );
+        VIEW_NAMES.put(
+                "Switch",
+                "sw"
+        );
+        VIEW_NAMES.put(
+                "DrawerLayout",
+                "dl"
+        );
+        VIEW_NAMES.put(
+                "Toolbar",
+                "tb"
+        );
+    }
 
     @Override
     public void visitToken(DetailAST ast) {
         DetailAST identifier = ast.findFirstToken(TokenTypes.TYPE).findFirstToken(TokenTypes.IDENT);
         if (identifier != null) {
             String fieldClassName = identifier.getText();
-            String ident = ast.findFirstToken(TokenTypes.IDENT).getText();
-            switch (fieldClassName) {
-                case "LinearLayout":
-                    if (!ident.startsWith("lv")) {
-                        log(ast);
-                    }
-                    break;
-                case "RelativeLayout":
-                    if (!ident.startsWith("rl")) {
-                        log(ast);
-                    }
-                    break;
-                case "ConstraintLayout":
-                    if (!ident.startsWith("cl")) {
-                        log(ast);
-                    }
-                    break;
-                case "FrameLayout":
-                    if (!ident.startsWith("fl")) {
-                        log(ast);
-                    }
-                    break;
-                case "ScrollView":
-                    if (!ident.startsWith("sv")) {
-                        log(ast);
-                    }
-                    break;
-                case "HorizontalScrollView":
-                    if (!ident.startsWith("hsv")) {
-                        log(ast);
-                    }
-                    break;
-                case "TextView":
-                    if (!ident.startsWith("tv")) {
-                        log(ast);
-                    }
-                    break;
-                case "ImageView":
-                    if (!ident.startsWith("iv")) {
-                        log(ast);
-                    }
-                    break;
-                case "ImageButton":
-                    if (!ident.startsWith("ib")) {
-                        log(ast);
-                    }
-                    break;
-                case "EditText":
-                    if (!ident.startsWith("et")) {
-                        log(ast);
-                    }
-                    break;
-                case "Button":
-                    if (!ident.startsWith("btn")) {
-                        log(ast);
-                    }
-                    break;
-                case "RecyclerView":
-                    if (!ident.startsWith("rv")) {
-                        log(ast);
-                    }
-                    break;
-                case "AdaptiveRecyclerView":
-                    if (!ident.startsWith("arv")) {
-                        log(ast);
-                    }
-                    break;
-                case "FloatingActionButton":
-                    if (!ident.startsWith("fab")) {
-                        log(ast);
-                    }
-                    break;
+            if (VIEW_NAMES.containsKey(fieldClassName)) {
+                String ident = ast.findFirstToken(TokenTypes.IDENT).getText();
+                if (!VIEW_NAMES.get(fieldClassName).startsWith(ident)) {
+                    log(ast);
+                }
             }
         }
     }
