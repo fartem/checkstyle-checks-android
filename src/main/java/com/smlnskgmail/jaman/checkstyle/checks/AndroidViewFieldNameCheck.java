@@ -103,7 +103,8 @@ public class AndroidViewFieldNameCheck extends AbstractCheck {
             String fieldClassName = identifier.getText();
             if (VIEW_NAMES.containsKey(fieldClassName)) {
                 String ident = ast.findFirstToken(TokenTypes.IDENT).getText();
-                if (!VIEW_NAMES.get(fieldClassName).startsWith(ident)) {
+                if (VIEW_NAMES.containsKey(fieldClassName)
+                        && !ident.startsWith(VIEW_NAMES.get(fieldClassName))) {
                     log(ast);
                 }
             }
