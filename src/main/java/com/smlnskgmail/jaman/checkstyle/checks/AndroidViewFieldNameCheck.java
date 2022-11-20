@@ -9,91 +9,29 @@ import java.util.Map;
 
 public class AndroidViewFieldNameCheck extends AbstractCheck {
 
-    private static final String MESSAGE_KEY = "AndroidViewFieldNameCheck";
-
     private static final Map<String, String> VIEW_NAMES = new HashMap<>();
 
     public AndroidViewFieldNameCheck() {
-        VIEW_NAMES.put(
-                "LinearLayout",
-                "ll"
-        );
-        VIEW_NAMES.put(
-                "RelativeLayout",
-                "rl"
-        );
-        VIEW_NAMES.put(
-                "ConstrainsLayout",
-                "cl"
-        );
-        VIEW_NAMES.put(
-                "FrameLayout",
-                "fl"
-        );
-        VIEW_NAMES.put(
-                "ScrollView",
-                "sv"
-        );
-        VIEW_NAMES.put(
-                "HorizontalScrollView",
-                "hsv"
-        );
-        VIEW_NAMES.put(
-                "TextView",
-                "tv"
-        );
-        VIEW_NAMES.put(
-                "ImageView",
-                "iv"
-        );
-        VIEW_NAMES.put(
-                "ImageButton",
-                "ib"
-        );
-        VIEW_NAMES.put(
-                "EditText",
-                "et"
-        );
-        VIEW_NAMES.put(
-                "Button",
-                "btn"
-        );
-        VIEW_NAMES.put(
-                "RecyclerView",
-                "rv"
-        );
-        VIEW_NAMES.put(
-                "AdaptiveRecyclerView",
-                "arv"
-        );
-        VIEW_NAMES.put(
-                "FloatingActionButton",
-                "fab"
-        );
-        VIEW_NAMES.put(
-                "ViewGroup",
-                "vg"
-        );
-        VIEW_NAMES.put(
-                "ViewPager",
-                "vp"
-        );
-        VIEW_NAMES.put(
-                "CheckBox",
-                "cb"
-        );
-        VIEW_NAMES.put(
-                "Switch",
-                "sw"
-        );
-        VIEW_NAMES.put(
-                "DrawerLayout",
-                "dl"
-        );
-        VIEW_NAMES.put(
-                "Toolbar",
-                "tb"
-        );
+        VIEW_NAMES.put("LinearLayout", "ll");
+        VIEW_NAMES.put("RelativeLayout", "rl");
+        VIEW_NAMES.put("ConstrainsLayout", "cl");
+        VIEW_NAMES.put("FrameLayout", "fl");
+        VIEW_NAMES.put("ScrollView", "sv");
+        VIEW_NAMES.put("HorizontalScrollView", "hsv");
+        VIEW_NAMES.put("TextView", "tv");
+        VIEW_NAMES.put("ImageView", "iv");
+        VIEW_NAMES.put("ImageButton", "ib");
+        VIEW_NAMES.put("EditText", "et");
+        VIEW_NAMES.put("Button", "btn");
+        VIEW_NAMES.put("RecyclerView", "rv");
+        VIEW_NAMES.put("AdaptiveRecyclerView", "arv");
+        VIEW_NAMES.put("FloatingActionButton", "fab");
+        VIEW_NAMES.put("ViewGroup", "vg");
+        VIEW_NAMES.put("ViewPager", "vp");
+        VIEW_NAMES.put("CheckBox", "cb");
+        VIEW_NAMES.put("Switch", "sw");
+        VIEW_NAMES.put("DrawerLayout", "dl");
+        VIEW_NAMES.put("Toolbar", "tb");
     }
 
     @Override
@@ -112,7 +50,7 @@ public class AndroidViewFieldNameCheck extends AbstractCheck {
     }
 
     private void log(DetailAST ast) {
-        log(ast.getLineNo(), MESSAGE_KEY);
+        log(ast.getLineNo(), AndroidViewFieldNameCheck.class.getName());
     }
 
     @Override
@@ -127,9 +65,7 @@ public class AndroidViewFieldNameCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {
-                TokenTypes.VARIABLE_DEF,
-        };
+        return new int[]{TokenTypes.VARIABLE_DEF};
     }
 
 }

@@ -6,8 +6,6 @@ import com.puppycrawl.tools.checkstyle.api.TokenTypes;
 
 public class ContextAsFirstParameterCheck extends AbstractCheck {
 
-    private static final String MESSAGE_KEY = "ContextAsFirstParameterCheck";
-
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
@@ -27,7 +25,7 @@ public class ContextAsFirstParameterCheck extends AbstractCheck {
                 }
             }
             if (hasContext && position != 0) {
-                log(ast.getLineNo(), MESSAGE_KEY);
+                log(ast.getLineNo(), ContextAsFirstParameterCheck.class.getName());
             }
         }
     }
@@ -44,7 +42,7 @@ public class ContextAsFirstParameterCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {
+        return new int[]{
                 TokenTypes.CTOR_DEF,
                 TokenTypes.METHOD_DEF
         };

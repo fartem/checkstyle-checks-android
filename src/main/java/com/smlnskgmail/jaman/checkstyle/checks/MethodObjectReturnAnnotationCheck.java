@@ -15,8 +15,6 @@ public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
             "Nullable"
     );
 
-    private static final String MESSAGE_KEY = "MethodObjectReturnAnnotationCheck";
-
     private static final List<Integer> EXCLUDED_TYPES = Arrays.asList(
             TokenTypes.LITERAL_BOOLEAN,
             TokenTypes.LITERAL_CHAR,
@@ -35,11 +33,11 @@ public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
         if (!EXCLUDED_TYPES.contains(returnType.getFirstChild().getType())) {
             final DetailAST modifiers = ast.findFirstToken(TokenTypes.MODIFIERS);
             if (modifiers.getChildCount(TokenTypes.ANNOTATION) == 0) {
-                log(ast.getLineNo(), MESSAGE_KEY);
+                log(ast.getLineNo(), MethodObjectReturnAnnotationCheck.class.getName());
             } else {
                 String firstAnnotationName = modifiers.getFirstChild().findFirstToken(TokenTypes.IDENT).getText();
                 if (!REQUIRED_ANNOTATIONS.contains(firstAnnotationName)) {
-                    log(ast.getLineNo(), MESSAGE_KEY);
+                    log(ast.getLineNo(), MethodObjectReturnAnnotationCheck.class.getName());
                 }
             }
         }
@@ -57,9 +55,7 @@ public class MethodObjectReturnAnnotationCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[] {
-                TokenTypes.METHOD_DEF,
-        };
+        return new int[]{TokenTypes.METHOD_DEF};
     }
 
 }
