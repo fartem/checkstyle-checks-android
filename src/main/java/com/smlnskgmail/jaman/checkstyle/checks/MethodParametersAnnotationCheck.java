@@ -27,8 +27,6 @@ public class MethodParametersAnnotationCheck extends AbstractCheck {
             TokenTypes.LITERAL_FLOAT
     );
 
-    private static final String MESSAGE_KEY = "MethodParameterAnnotationCheck";
-
     @Override
     public void visitToken(DetailAST ast) {
         final DetailAST parameters = ast.findFirstToken(TokenTypes.PARAMETERS);
@@ -40,7 +38,7 @@ public class MethodParametersAnnotationCheck extends AbstractCheck {
                     detailAST -> {
                         final DetailAST modifiers = detailAST.findFirstToken(TokenTypes.MODIFIERS);
                         if (isInvalidParameter(detailAST)) {
-                            log(modifiers.getLineNo(), MESSAGE_KEY);
+                            log(modifiers.getLineNo(), MethodParametersAnnotationCheck.class.getName());
                         }
                     }
             );
@@ -69,9 +67,7 @@ public class MethodParametersAnnotationCheck extends AbstractCheck {
 
     @Override
     public int[] getRequiredTokens() {
-        return new int[]{
-                TokenTypes.METHOD_DEF,
-        };
+        return new int[]{TokenTypes.METHOD_DEF};
     }
 
 }
